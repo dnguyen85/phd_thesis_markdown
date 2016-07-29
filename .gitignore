@@ -61,3 +61,6 @@ node_modules/
 
 # eps
 *-converted-to.*
+
+# Misc
+misc/
