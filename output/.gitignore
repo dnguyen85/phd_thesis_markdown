@@ -1,5 +1,6 @@
 # Generated pdf
 /*.pdf
+/*.html
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
@@ -127,3 +128,4 @@ sympy-plots-for-*.tex/
 # WinEdt
 *.bak
 *.sav
+
