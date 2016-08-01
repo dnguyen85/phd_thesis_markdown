@@ -11,6 +11,8 @@ $else$
 $endif$
 
 % Overwrite \begin{figure}[htbp] with \begin{figure}[H]
+% (DN) This provides a way to force manual placement of figures from pandoc
+% using actual figure text positions
 \usepackage{float}
 \let\origfigure=\figure
 \let\endorigfigure=\endfigure
@@ -20,23 +22,23 @@ $endif$
 \endorigfigure
 }
 
-% fix for pandoc 1.14
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-
 % TP: hack to truncate list of figures/tables.
 \usepackage{truncate}
 \usepackage{caption}
 \usepackage{tocloft}
 % TP: end hack
 
+% Controlling line spacing
 $if(linestretch)$
 \usepackage{setspace}
 \setstretch{$linestretch$}
 $endif$
-\usepackage{amssymb,amsmath}
-\usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
+
+\usepackage{amssymb,amsmath}        % Math package
+\usepackage{ifxetex,ifluatex}       % checking for active latex engine
+\usepackage{fixltx2e}               % provides \textsubscript
+
+% Math font
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 
   % if pdftex
   \usepackage[T1]{fontenc}
@@ -72,53 +74,42 @@ $endif$
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
 
-% Geometry
 $if(geometry)$
-\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}  % Geometry
 $endif$
-
-% Natbib
 $if(natbib)$
-\usepackage{natbib}
+\usepackage{natbib}     % Natbib
 \bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
 $endif$
-
-% Biblatex
 $if(biblatex)$
-\usepackage[backend=biber]{biblatex}
+\usepackage[backend=biber]{biblatex}    % Biblatex
 $if(biblio-files)$
-\bibliography{$biblio-files$}
+\bibliography{$biblio-files$}           % Bib file
 $endif$
 $endif$
-
-% Listings
 $if(listings)$
-\usepackage{listings}
+\usepackage{listings}                   % Listings
 $endif$
-
-% LHS
 $if(lhs)$
-\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
+% LHS
+\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}  
 $endif$
 
-% Highlighting macros
 $if(highlighting-macros)$
-$highlighting-macros$
+%% Highlighting macros
+$highlighting-macros$                   
+%% End highlighting macros
 $endif$
 
-% Verbatim in note
 $if(verbatim-in-note)$
-\usepackage{fancyvrb}
+\usepackage{fancyvrb}                 % Verbatim in note
 $endif$
-
-% Tables
 $if(tables)$
-\usepackage{longtable,booktabs}
+\usepackage{longtable,booktabs}       % Tables
 $endif$
 
-% Graphics
 $if(graphics)$
-\usepackage{graphicx}
+\usepackage{graphicx}                 % Graphics
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -137,6 +128,7 @@ $endif$
 \else
   \usepackage[unicode=true]{hyperref}
 \fi
+% Hyperref setup
 \hypersetup{breaklinks=true,
             bookmarks=true,
             pdfauthor={$author-meta$},
@@ -148,15 +140,12 @@ $endif$
             pdfborder={0 0 0}}
 \urlstyle{same}  % don't use monospace font for urls
 
-% Links as notes
 $if(links-as-notes)$
 % Make links footnotes instead of hotlinks:
-\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
+\renewcommand{\href}[2]{#2\footnote{\url{#1}}}  
 $endif$
-
-% strikeout
 $if(strikeout)$
-\usepackage[normalem]{ulem}
+\usepackage[normalem]{ulem}             % strikeout
 % avoid problems with \sout in headers with hyperref:
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 $endif$
@@ -164,7 +153,7 @@ $endif$
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 
-% Tight list
+% Pandoc 1.14 bug fix: Tight list
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
@@ -175,10 +164,9 @@ $else$
 \setcounter{secnumdepth}{0}
 $endif$
 
-% Verbatim in note
-% $if(verbatim-in-note)$
-% \VerbatimFootnotes % allows verbatim text in footnotes
-% $endif$
+$if(verbatim-in-note)$
+\VerbatimFootnotes  % allows verbatim text in footnotes
+$endif$
 $if(lang)$
 \ifxetex
   \usepackage{polyglossia}
@@ -189,20 +177,20 @@ $if(lang)$
 \fi
 $endif$
 
-% Document title
 $if(title)$
+% Document title
 \title{$title$$if(subtitle)$\\\vspace{0.5em}{\large $subtitle$}$endif$}
-$endif$
 
-% author
+$endif$
 $if(author)$
+% author
 \author{$for(author)$$author$$sep$ \and $endfor$}
-$endif$
 
+$endif$
 % Date
 \date{$date$}
 
-% Extra preamble information
+%%%%%%%%%%%% Extra preamble information %%%%%%%%%%%%%
 $for(header-includes)$
 $header-includes$
 $endfor$

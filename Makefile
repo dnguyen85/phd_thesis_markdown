@@ -36,7 +36,7 @@ direct_pdf:
 	--bibliography="$(BIBFILE)" 2>pandoc.log \
 	--csl="$(STYLEDIR)/ref_format.csl" \
 	--highlight-style pygments \
-	-V fontsize=12pt \
+	-V fontsize=10pt \
 	-V papersize=a4paper \
 	-V documentclass:article \
 	-N \
@@ -56,7 +56,7 @@ tex:
 	-N \
 	--biblatex \
 	-V biblio-files="$(BIBFILE)" \
-	-V fontsize=12pt \
+	-V fontsize=10pt \
 	-V papersize=a4paper \
 	-V documentclass:article \
 	--latex-engine=pdflatex 
