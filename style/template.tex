@@ -1,3 +1,8 @@
+% arara: pdflatex: {action: nonstopmode , draft: yes, options: "-file-line-error"}
+% arara: biber
+% arara: pdflatex: {action: nonstopmode, draft: yes, options: "-file-line-error"}
+% arara: pdflatex: {action: nonstopmode, synctex: yes, options: "-file-line-error"}
+
 \documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
 $if(fontfamily)$
 \usepackage{$fontfamily$}
@@ -32,12 +37,10 @@ $endif$
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 
+  % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-$if(euro)$
-  \usepackage{eurosym}
-$endif$
 \else % if luatex or xelatex
   \ifxetex
     \usepackage{mathspec}
@@ -46,7 +49,6 @@ $endif$
     \usepackage{fontspec}
   \fi
   \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
-  \newcommand{\euro}{€}
 $if(mainfont)$
     \setmainfont{$mainfont$}
 $endif$
@@ -60,41 +62,61 @@ $if(mathfont)$
     \setmathfont(Digits,Latin,Greek){$mathfont$}
 $endif$
 \fi
+
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
 % use microtype if available
 \IfFileExists{microtype.sty}{%
 \usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+
+% Geometry
 $if(geometry)$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
 $endif$
+
+% Natbib
 $if(natbib)$
 \usepackage{natbib}
 \bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
 $endif$
+
+% Biblatex
 $if(biblatex)$
-\usepackage{biblatex}
+\usepackage[backend=biber]{biblatex}
 $if(biblio-files)$
 \bibliography{$biblio-files$}
 $endif$
 $endif$
+
+% Listings
 $if(listings)$
 \usepackage{listings}
 $endif$
+
+% LHS
 $if(lhs)$
 \lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
 $endif$
+
+% Highlighting macros
 $if(highlighting-macros)$
 $highlighting-macros$
 $endif$
+
+% Verbatim in note
 $if(verbatim-in-note)$
 \usepackage{fancyvrb}
 $endif$
+
+% Tables
 $if(tables)$
 \usepackage{longtable,booktabs}
 $endif$
+
+% Graphics
 $if(graphics)$
 \usepackage{graphicx}
 \makeatletter
@@ -106,6 +128,8 @@ $if(graphics)$
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 $endif$
+
+% Hyperref
 \ifxetex
   \usepackage[setpagesize=false, % page size defined by xetex
               unicode=false, % unicode breaks when used with xetex
@@ -123,10 +147,14 @@ $endif$
             linkcolor=$if(linkcolor)$$linkcolor$$else$magenta$endif$,
             pdfborder={0 0 0}}
 \urlstyle{same}  % don't use monospace font for urls
+
+% Links as notes
 $if(links-as-notes)$
 % Make links footnotes instead of hotlinks:
 \renewcommand{\href}[2]{#2\footnote{\url{#1}}}
 $endif$
+
+% strikeout
 $if(strikeout)$
 \usepackage[normalem]{ulem}
 % avoid problems with \sout in headers with hyperref:
@@ -135,48 +163,72 @@ $endif$
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+% Tight list
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Numbering sections
 $if(numbersections)$
 \setcounter{secnumdepth}{5}
 $else$
 \setcounter{secnumdepth}{0}
 $endif$
-$if(verbatim-in-note)$
-\VerbatimFootnotes % allows verbatim text in footnotes
-$endif$
+
+% Verbatim in note
+% $if(verbatim-in-note)$
+% \VerbatimFootnotes % allows verbatim text in footnotes
+% $endif$
 $if(lang)$
 \ifxetex
   \usepackage{polyglossia}
   \setmainlanguage{$mainlang$}
 \else
+  % pdflatex
   \usepackage[$lang$]{babel}
 \fi
 $endif$
 
+% Document title
 $if(title)$
 \title{$title$$if(subtitle)$\\\vspace{0.5em}{\large $subtitle$}$endif$}
 $endif$
+
+% author
 $if(author)$
 \author{$for(author)$$author$$sep$ \and $endfor$}
 $endif$
+
+% Date
 \date{$date$}
+
+% Extra preamble information
 $for(header-includes)$
 $header-includes$
 $endfor$
 
+%%%%%%%%%%%%%%% Document %%%%%%%%%%%%%%%
 \begin{document}
+
+% make title
 $if(title)$
 \maketitle
 $endif$
+
+% Abstract
 $if(abstract)$
 \begin{abstract}
 $abstract$
 \end{abstract}
 $endif$
 
+% Any customization before body
 $for(include-before)$
 $include-before$
 
 $endfor$
+
+% Table of content
 $if(toc)$
 {
 \hypersetup{linkcolor=black}
@@ -190,8 +242,11 @@ $endif$
 $if(lof)$
 \listoffigures
 $endif$
+
+% Body of text
 $body$
 
+% Bibliography entries - natbib only
 $if(natbib)$
 $if(biblio-files)$
 $if(biblio-title)$
@@ -202,13 +257,16 @@ $else$
 $endif$
 $endif$
 \bibliography{$biblio-files$}
+$endif$
+$endif$
 
-$endif$
-$endif$
+% Print bibliography - biblatex only
 $if(biblatex)$
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
 
 $endif$
+
+% Any thing after Body
 $for(include-after)$
 $include-after$
 

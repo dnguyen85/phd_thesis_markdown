@@ -38,15 +38,14 @@ direct_pdf:
 	--highlight-style pygments \
 	-V fontsize=12pt \
 	-V papersize=a4paper \
-	-V documentclass:report \
+	-V documentclass:article \
 	-N \
 	--latex-engine=pdflatex \
 	--verbose
 
 # Main pdf target: first compile tex, then pdf
 pdf: tex
-	cd "$(OUTPUTDIR)" && \
-		latexmk -pdf -pdflatex="echo X | pdflatex -shell-escape -synctex=1 -src-specials -interaction=errorstopmode %O %S" thesis.tex
+	cd "$(OUTPUTDIR)" && arara -v thesis.tex
 
 # Tex target use biblatex to generate bib entries
 tex:
@@ -59,7 +58,7 @@ tex:
 	-V biblio-files="$(BIBFILE)" \
 	-V fontsize=12pt \
 	-V papersize=a4paper \
-	-V documentclass:report \
+	-V documentclass:article \
 	--latex-engine=pdflatex 
 	
 clean:

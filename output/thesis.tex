@@ -1,4 +1,9 @@
-\documentclass[12pt,a4paper,]{report}
+% arara: pdflatex: {action: nonstopmode , draft: true, options: "-file-line-error"}
+% arara: biber
+% arara: pdflatex: {action: nonstopmode, draft: true, options: "-file-line-error"}
+% arara: pdflatex: {action: nonstopmode, synctex: true, options: "-file-line-error"}
+
+\documentclass[12pt,a4paper,]{article}
 \usepackage{lmodern}
 
 % Overwrite \begin{figure}[htbp] with \begin{figure}[H]
@@ -52,7 +57,7 @@
 % Natbib
 
 % Biblatex
-\usepackage{biblatex}
+\usepackage[backend=biber]{biblatex}
 \bibliography{./source/bib/references.bib}
 
 % Listings
@@ -251,7 +256,7 @@
 % \usepackage[rightFloats, CaptionBefore]{fltpage}
 
 % Don't let floats cross subsections
-\usepackage[section,subsection]{extraplaceins}
+% \usepackage[section,subsection]{extraplaceins}
 
 %%%%%%%%%%%%%%% Document %%%%%%%%%%%%%%%
 \begin{document}
@@ -316,8 +321,8 @@
 I, AUTHORNAME confirm that the work presented in this thesis is my own. Where information has been derived from other sources, I confirm that this has been indicated in the thesis.
 } \vspace*{\fill}
 
-\chapter*{Abstract}\label{abstract}
-\addcontentsline{toc}{chapter}{Abstract}
+\section*{Abstract}\label{abstract}
+\addcontentsline{toc}{section}{Abstract}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et turpis
 gravida, lacinia ante sit amet, sollicitudin erat. Aliquam efficitur
@@ -328,8 +333,8 @@ eu, sollicitudin leo. Donec nec dui sagittis, malesuada erat eget,
 vulputate tellus. Nam ullamcorper efficitur iaculis. Mauris eu vehicula
 nibh. In lectus turpis, tempor at felis a, egestas fermentum massa.
 
-\chapter*{Acknowledgements}\label{acknowledgements}
-\addcontentsline{toc}{chapter}{Acknowledgements}
+\section*{Acknowledgements}\label{acknowledgements}
+\addcontentsline{toc}{section}{Acknowledgements}
 
 Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
 congue fermentum ante, semper porta nisl consectetur ut. Duis ornare sit
@@ -350,22 +355,22 @@ varius, sed finibus turpis placerat.
 
 \tableofcontents
 
-\chapter*{List of figures}\label{list-of-figures}
-\addcontentsline{toc}{chapter}{List of figures}
+\section*{List of figures}\label{list-of-figures}
+\addcontentsline{toc}{section}{List of figures}
 
 Figure 4.1 This is an example figure . . . \hfill{pp}\\
 Figure x.x Short title of the figure . . . \hfill{pp}
 
-\chapter*{List of tables}\label{list-of-tables}
-\addcontentsline{toc}{chapter}{List of tables}
+\section*{List of tables}\label{list-of-tables}
+\addcontentsline{toc}{section}{List of tables}
 
 Table 5.1 This is an example table . . . \hfill{pp}\\
 Table x.x Short title of the figure . . . \hfill{pp}
 
-\chapter{Introduction, with a
+\section{Introduction, with a
 citation}\label{introduction-with-a-citation}
 
-\section{Background}\label{background}
+\subsection{Background}\label{background}
 
 This is the introduction. Quisque finibus aliquet cursus. Integer in
 pellentesque tellus. Duis eu dignissim nulla, a porttitor enim. Quisque
@@ -383,7 +388,7 @@ erat volutpat. Praesent varius risus auctor est ultricies, sit amet
 consequat nisi laoreet. Suspendisse non est et mauris pharetra sagittis
 non porta justo. Praesent malesuada metus ut sapien sodales ornare.
 
-\section{The middle bit}\label{the-middle-bit}
+\subsection{The middle bit}\label{the-middle-bit}
 
 This is the middle bit. Phasellus quis ex in ipsum pellentesque lobortis
 tincidunt sed massa. Nullam euismod sem quis dictum condimentum.
@@ -403,7 +408,7 @@ penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec
 finibus leo nec dui imperdiet, tincidunt ornare orci venenatis. Maecenas
 placerat efficitur est, eu blandit magna hendrerit eu.
 
-\subsection{Subsection of the middle
+\subsubsection{Subsection of the middle
 bit}\label{subsection-of-the-middle-bit}
 
 This is a subsection of the middle bit. Quisque sit amet tempus arcu, ac
@@ -412,7 +417,7 @@ rutrum risus. Nunc in venenatis mi. Curabitur sit amet suscipit eros,
 non tincidunt nibh. Phasellus lorem lectus, iaculis non luctus eget,
 tempus non risus. Suspendisse ut felis mi.
 
-\section{Summary of chapters}\label{summary-of-chapters}
+\subsection{Summary of chapters}\label{summary-of-chapters}
 
 This is a brief outline of what went into each chapter. \textbf{Chapter
 1} gives a background on duis tempus justo quis arcu consectetur
@@ -422,10 +427,10 @@ turpis id turpis sollicitudin aliquet. \textbf{Chapter 4} shows how
 phasellus gravida non ex id aliquet. Proin faucibus nibh sit amet augue
 blandit varius.
 
-\chapter{Literature review, with
+\section{Literature review, with
 maths}\label{literature-review-with-maths}
 
-\section{Introduction}\label{introduction}
+\subsection{Introduction}\label{introduction}
 
 This is the introduction. Duis in neque felis. In hac habitasse platea
 dictumst. Cras eget rutrum elit. Pellentesque tristique venenatis
@@ -433,7 +438,7 @@ pellentesque. Cras eu dignissim quam, vel sodales felis. Vestibulum
 efficitur justo a nibh cursus eleifend. Integer ultrices lorem at nunc
 efficitur lobortis.
 
-\section{The middle}\label{the-middle}
+\subsection{The middle}\label{the-middle}
 
 This is the literature review. Nullam quam odio, volutpat ac ornare
 quis, vestibulum nec nulla. Aenean nec dapibus in
@@ -456,7 +461,7 @@ fames ac turpis egestas. Sed faucibus pulvinar volutpat. Ut semper
 fringilla erat non dapibus. Nunc vitae felis eget purus placerat finibus
 laoreet ut nibh.
 
-\section{Conclusion}\label{conclusion}
+\subsection{Conclusion}\label{conclusion}
 
 This is the conclusion. Donec pulvinar molestie urna eu faucibus. In
 tristique ut neque vel eleifend. Morbi ut massa vitae diam gravida
@@ -473,10 +478,10 @@ malesuada fames ac turpis egestas.
   third item in the list
 \end{itemize}
 
-\chapter{First research study, with
+\section{First research study, with
 code}\label{first-research-study-with-code}
 
-\section{Introduction}\label{introduction-1}
+\subsection{Introduction}\label{introduction-1}
 
 This is the introduction. Nam mollis congue tortor, sit amet convallis
 tortor mollis eget. Fusce viverra ut magna eu sagittis. Vestibulum at
@@ -484,13 +489,13 @@ ultrices sapien, at elementum urna. Nam a blandit leo, non lobortis
 quam. Aliquam feugiat turpis vitae tincidunt ultricies. Mauris
 ullamcorper pellentesque nisl, vel molestie lorem viverra at.
 
-\section{Method}\label{method}
+\subsection{Method}\label{method}
 
 Suspendisse iaculis in lacus ut dignissim. Cras dignissim dictum
 eleifend. Suspendisse potenti. Suspendisse et nisi suscipit, vestibulum
 est at, maximus sapien. Sed ut diam tortor.
 
-\subsection{Subsection 1 with example code
+\subsubsection{Subsection 1 with example code
 block}\label{subsection-1-with-example-code-block}
 
 This is the first part of the methodology. Cras porta dui a dolor
@@ -511,38 +516,38 @@ before and after a code block:
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Subsection 2}\label{subsection-2}
+\subsubsection{Subsection 2}\label{subsection-2}
 
 This is the second part of the methodology. Proin tincidunt odio non sem
 mollis tristique. Fusce pharetra accumsan volutpat. In nec mauris vel
 orci rutrum dapibus nec ac nibh. Praesent malesuada sagittis nulla, eget
 commodo mauris ultricies eget. Suspendisse iaculis finibus ligula.
 
-\section{Results}\label{results}
+\subsection{Results}\label{results}
 
 These are the results. Ut accumsan tempus aliquam. Sed massa ex, egestas
 non libero id, imperdiet scelerisque augue. Duis rutrum ultrices arcu et
 ultricies. Proin vel elit eu magna mattis vehicula. Sed ex erat,
 fringilla vel feugiat ut, fringilla non diam.
 
-\section{Discussion}\label{discussion}
+\subsection{Discussion}\label{discussion}
 
 This is the discussion. Duis ultrices tempor sem vitae convallis.
 Pellentesque lobortis risus ac nisi varius bibendum. Phasellus volutpat
 aliquam varius. Mauris vitae neque quis libero volutpat finibus. Nunc
 diam metus, imperdiet vitae leo sed, varius posuere orci.
 
-\section{Conclusion}\label{conclusion-1}
+\subsection{Conclusion}\label{conclusion-1}
 
 This is the conclusion to the chapter. Praesent bibendum urna orci, a
 venenatis tellus venenatis at. Etiam ornare, est sed lacinia elementum,
 lectus diam tempor leo, sit amet elementum ex elit id ex. Ut ac viverra
 turpis. Quisque in nisl auctor, ornare dui ac, consequat tellus.
 
-\chapter{Research containing a
+\section{Research containing a
 figure}\label{research-containing-a-figure}
 
-\section{Introduction}\label{introduction-2}
+\subsection{Introduction}\label{introduction-2}
 
 This is the introduction. Sed vulputate tortor at nisl blandit interdum.
 Cras sagittis massa ex, quis eleifend purus condimentum congue. Maecenas
@@ -550,20 +555,20 @@ tristique, justo vitae efficitur mollis, mi nulla varius elit, in
 consequat ligula nulla ut augue. Phasellus diam sapien, placerat sit
 amet tempor non, lobortis tempus ante.
 
-\section{Method}\label{method-1}
+\subsection{Method}\label{method-1}
 
 Donec imperdiet, lectus vestibulum sagittis tempus, turpis dolor euismod
 justo, vel tempus neque libero sit amet tortor. Nam cursus commodo
 tincidunt.
 
-\subsection{Subsection 1}\label{subsection-1}
+\subsubsection{Subsection 1}\label{subsection-1}
 
 This is the first part of the methodology. Duis tempor sapien sed tellus
 ultrices blandit. Sed porta mauris tortor, eu vulputate arcu dapibus ac.
 Curabitur sodales at felis efficitur sollicitudin. Quisque at neque
 sollicitudin, mollis arcu vitae, faucibus tellus.
 
-\subsection{Subsection 2}\label{subsection-2-1}
+\subsubsection{Subsection 2}\label{subsection-2-1}
 
 This is the second part of the methodology. Sed ut ipsum ultrices,
 interdum ipsum vel, lobortis diam. Curabitur sit amet massa quis tortor
@@ -572,13 +577,13 @@ consequat. Integer leo turpis, suscipit ac venenatis pellentesque,
 efficitur non sem. Pellentesque eget vulputate turpis. Etiam id nibh at
 elit fermentum interdum.
 
-\section{Results}\label{results-1}
+\subsection{Results}\label{results-1}
 
 These are the results. In vitae odio at libero elementum fermentum vel
 iaculis enim. Nullam finibus sapien in congue condimentum. Curabitur et
 ligula et ipsum mollis fringilla.
 
-\section{Discussion}\label{discussion-1}
+\subsection{Discussion}\label{discussion-1}
 
 Figure \ref{ref_a_figure} shows how to add a figure. Donec ut lacinia
 nibh. Nam tincidunt augue et tristique cursus. Vestibulum sagittis odio
@@ -596,7 +601,7 @@ Cousteau. It was equipped with a mobile laboratory for underwater field
 research. \label{ref_a_figure}}
 \end{figure}
 
-\section{Conclusion}\label{conclusion-2}
+\subsection{Conclusion}\label{conclusion-2}
 
 This is the conclusion to the chapter. Quisque nec purus a quam
 consectetur volutpat. Cum sociis natoque penatibus et magnis dis
@@ -606,9 +611,9 @@ Curabitur nec cursus odio. Quisque tristique eros nulla, vitae finibus
 lorem aliquam quis. Interdum et malesuada fames ac ante ipsum primis in
 faucibus.
 
-\chapter{Research containing a table}\label{research-containing-a-table}
+\section{Research containing a table}\label{research-containing-a-table}
 
-\section{Introduction}\label{introduction-3}
+\subsection{Introduction}\label{introduction-3}
 
 This is the introduction. Phasellus non purus id mauris aliquam rutrum
 vitae quis tellus. Maecenas rhoncus ligula nulla, fringilla placerat mi
@@ -616,7 +621,7 @@ consectetur eu. Aenean nec metus ac est ornare posuere. Nunc ipsum
 lacus, gravida commodo turpis quis, rutrum eleifend erat. Pellentesque
 id lorem eget ante porta tincidunt nec nec tellus.
 
-\section{Method}\label{method-2}
+\subsection{Method}\label{method-2}
 
 Vivamus consectetur, velit in congue lobortis, massa massa lacinia urna,
 sollicitudin semper ipsum augue quis tortor. Donec quis nisl at arcu
@@ -624,7 +629,7 @@ volutpat ultrices. Maecenas ex nibh, consequat ac blandit sit amet,
 molestie in odio. Morbi finibus libero et nisl dignissim, at ultricies
 ligula pulvinar.
 
-\subsection{Subsection 1}\label{subsection-1-1}
+\subsubsection{Subsection 1}\label{subsection-1-1}
 
 This is the first part of the methodology. Integer leo erat, commodo in
 lacus vel, egestas varius elit. Nulla eget magna quam. Nullam
@@ -632,7 +637,7 @@ sollicitudin dolor ut ipsum varius tincidunt. Duis dignissim massa in
 ipsum accumsan imperdiet. Maecenas suscipit sapien sed dui pharetra
 blandit. Morbi fermentum est vel quam pretium maximus.
 
-\subsection{Subsection 2}\label{subsection-2-2}
+\subsubsection{Subsection 2}\label{subsection-2-2}
 
 This is the second part of the methodology. Nullam accumsan condimentum
 eros eu volutpat. Maecenas quis ligula tempor, interdum ante sit amet,
@@ -640,7 +645,7 @@ aliquet sem. Fusce tellus massa, blandit id tempus at, cursus in tortor.
 Nunc nec volutpat ante. Phasellus dignissim ut lectus quis porta. Lorem
 ipsum dolor sit amet, consectetur adipiscing elit.
 
-\section{Results}\label{results-2}
+\subsection{Results}\label{results-2}
 
 Table \ref{ref_a_table} shows us how to add a table. Integer tincidunt
 sed nisl eget pellentesque. Mauris eleifend, nisl non lobortis
@@ -717,7 +722,7 @@ Row 4
 \bottomrule
 \end{longtable}
 
-\section{Discussion}\label{discussion-2}
+\subsection{Discussion}\label{discussion-2}
 
 This is the discussion. Etiam sit amet mi eros. Donec vel nisi sed purus
 gravida fermentum at quis odio. Vestibulum quis nisl sit amet justo
@@ -725,7 +730,7 @@ maximus molestie. Maecenas vitae arcu erat. Nulla facilisi. Nam pretium
 mauris eu enim porttitor, a mattis velit dictum. Nulla sit amet ligula
 non mauris volutpat fermentum quis vitae sapien.
 
-\section{Conclusion}\label{conclusion-3}
+\subsection{Conclusion}\label{conclusion-3}
 
 This is the conclusion to the chapter. Nullam porta tortor id vehicula
 interdum. Quisque pharetra, neque ut accumsan suscipit, orci orci
@@ -734,35 +739,35 @@ mauris laoreet iaculis. Morbi volutpat orci felis, id condimentum nulla
 suscipit eu. Fusce in turpis quis ligula tempus scelerisque eget quis
 odio. Vestibulum et dolor id erat lobortis ullamcorper quis at sem.
 
-\chapter{Final research study}\label{final-research-study}
+\section{Final research study}\label{final-research-study}
 
-\section{Introduction}\label{introduction-4}
+\subsection{Introduction}\label{introduction-4}
 
 This is the introduction. Nunc lorem odio, laoreet eu turpis at,
 condimentum sagittis diam. Phasellus metus ligula, auctor ac nunc vel,
 molestie mattis libero. Praesent id posuere ex, vel efficitur nibh.
 Quisque vestibulum accumsan lacus vitae mattis.
 
-\section{Method}\label{method-3}
+\subsection{Method}\label{method-3}
 
 In tincidunt viverra dolor, ac pharetra tellus faucibus eget.
 Pellentesque tempor a enim nec venenatis. Morbi blandit magna imperdiet
 posuere auctor. Maecenas in maximus est.
 
-\subsection{Subsection 1}\label{subsection-1-2}
+\subsubsection{Subsection 1}\label{subsection-1-2}
 
 This is the first part of the methodology. Praesent mollis sem diam, sit
 amet tristique lacus vulputate quis. Vivamus rhoncus est rhoncus tellus
 lacinia, a interdum sem egestas. Curabitur quis urna vel quam blandit
 semper vitae a leo. Nam vel lectus lectus.
 
-\subsection{Subsection 2}\label{subsection-2-3}
+\subsubsection{Subsection 2}\label{subsection-2-3}
 
 This is the second part of the methodology. Aenean vel pretium tortor.
 Aliquam erat volutpat. Quisque quis lobortis mi. Nulla turpis leo,
 ultrices nec nulla non, ullamcorper laoreet risus.
 
-\section{Results}\label{results-3}
+\subsection{Results}\label{results-3}
 
 These are the results. Curabitur vulputate nisl non ante tincidunt
 tempor. Aenean porta nisi quam, sed ornare urna congue sed. Curabitur in
@@ -770,7 +775,7 @@ sapien justo. Quisque pulvinar ullamcorper metus, eu varius mauris
 pellentesque et. In hac habitasse platea dictumst. Pellentesque nec
 porttitor libero. Duis et magna a massa lacinia cursus.
 
-\section{Discussion}\label{discussion-3}
+\subsection{Discussion}\label{discussion-3}
 
 This is the discussion. Curabitur gravida nisl id gravida congue. Duis
 est nisi, sagittis eget accumsan ullamcorper, semper quis turpis. Mauris
@@ -778,16 +783,16 @@ ultricies diam metus, sollicitudin ultricies turpis lobortis vitae. Ut
 egestas vehicula enim, porta molestie neque consectetur placerat.
 Integer iaculis sapien dolor, non porta nibh condimentum ut.
 
-\section{Conclusion}\label{conclusion-4}
+\subsection{Conclusion}\label{conclusion-4}
 
 This is the conclusion to the chapter. Nulla sed condimentum lectus.
 Duis sed tempor erat, at cursus lacus. Nam vitae tempus arcu, id
 vestibulum sapien. Cum sociis natoque penatibus et magnis dis parturient
 montes, nascetur ridiculus mus.
 
-\chapter{Conclusion}\label{conclusion-5}
+\section{Conclusion}\label{conclusion-5}
 
-\section{Thesis summary}\label{thesis-summary}
+\subsection{Thesis summary}\label{thesis-summary}
 
 In summary, pellentesque habitant morbi tristique senectus et netus et
 malesuada fames ac turpis egestas. Nunc eleifend, ex a luctus porttitor,
@@ -795,7 +800,7 @@ felis ex suscipit tellus, ut sollicitudin sapien purus in libero. Nulla
 blandit eget urna vel tempus. Praesent fringilla dui sapien, sit amet
 egestas leo sollicitudin at.
 
-\section{Future work}\label{future-work}
+\subsection{Future work}\label{future-work}
 
 There are several potential directions for extending this thesis. Lorem
 ipsum dolor sit amet, consectetur adipiscing elit. Aliquam gravida ipsum
@@ -809,18 +814,18 @@ pharetra sed. In dapibus magna convallis lectus sodales, a consequat sem
 euismod. Curabitur in interdum purus. Integer ultrices laoreet aliquet.
 Nulla vel dapibus urna. Nunc efficitur erat ac nisi auctor sodales.
 
-\chapter*{Appendix 1: Some extra
+\section*{Appendix 1: Some extra
 stuff}\label{appendix-1-some-extra-stuff}
-\addcontentsline{toc}{chapter}{Appendix 1: Some extra stuff}
+\addcontentsline{toc}{section}{Appendix 1: Some extra stuff}
 
 Add appendix 1 here. Vivamus hendrerit rhoncus interdum. Sed ullamcorper
 et augue at porta. Suspendisse facilisis imperdiet urna, eu pellentesque
 purus suscipit in. Integer dignissim mattis ex aliquam blandit.
 Curabitur lobortis quam varius turpis ultrices egestas.
 
-\chapter*{Appendix 2: Some more extra
+\section*{Appendix 2: Some more extra
 stuff}\label{appendix-2-some-more-extra-stuff}
-\addcontentsline{toc}{chapter}{Appendix 2: Some more extra stuff}
+\addcontentsline{toc}{section}{Appendix 2: Some more extra stuff}
 
 Add appendix 2 here. Aliquam rhoncus mauris ac neque imperdiet, in
 mattis eros aliquam. Etiam sed massa et risus posuere rutrum vel et
