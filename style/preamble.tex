@@ -3,8 +3,8 @@
 \setcounter{tocdepth}{3}
 
 % Headers and page numbering
-\usepackage{fancyhdr}
-\pagestyle{plain}
+% \usepackage{fancyhdr}
+% \pagestyle{plain}
 
 % Following package is used to add background image to front page
 \usepackage{wallpaper}
@@ -44,11 +44,11 @@
 % \newcommand{\amper}{{\fontspec[Scale=.95]{Adobe Caslon Pro}\selectfont\itshape\&}}
 
 % HEADINGS
-\usepackage{sectsty}
-\usepackage[normalem]{ulem}
-\sectionfont{\rmfamily\mdseries\Large}
-\subsectionfont{\rmfamily\mdseries\scshape\large}
-\subsubsectionfont{\rmfamily\bfseries\upshape\large}
+% \usepackage{sectsty}
+% \usepackage[normalem]{ulem}
+% \sectionfont{\rmfamily\mdseries\Large}
+% \subsectionfont{\rmfamily\mdseries\scshape\large}
+% \subsubsectionfont{\rmfamily\bfseries\upshape\large}
 % \sectionfont{\rmfamily\mdseries\Large}
 % \subsectionfont{\rmfamily\mdseries\scshape\normalsize}
 % \subsubsectionfont{\rmfamily\bfseries\upshape\normalsize}
@@ -59,15 +59,15 @@
 \usepackage{siunitx}
 
 % Adjust spacing between lines to 1.5
-\usepackage{setspace}
+% \usepackage{setspace}
 % \onehalfspacing
-\doublespacing
-\raggedbottom
+% \doublespacing
+% \raggedbottom
 
 % Set margins
 \usepackage[margin=1in]{geometry}
 % \setlength\parindent{0.4in} % indent at start of paragraphs (set to 0.3?)
-\setlength{\parskip}{9pt}
+% \setlength{\parskip}{9pt}
 
 % Add space between pararaphs
 % http://texblog.org/2012/11/07/correctly-typesetting-paragraphs-in-latex/
@@ -86,7 +86,17 @@
 >{\centering\arraybackslash}m{#1}}%
 
 % Allow for long captions and float captions on opposite page of figures
-% \usepackage[rightFloats, CaptionBefore]{fltpage}
+\usepackage[rightFloats, CaptionBefore]{packages/fltpage}
 
 % Don't let floats cross subsections
-% \usepackage[section,subsection]{extraplaceins}
+\usepackage[section,subsection]{packages/extraplaceins}
+
+\usepackage{xspace}
+
+%% MACROS -------------------------------------------------------%%
+\newcommand{\jamcancel}[0]{SAIM\xspace}
+\newcommand{\Jamcancel}[0]{Steerable-separable Antenna for Interference Mitigation\xspace}
+\newcommand{\ratehiding}[0]{CBM\xspace}
+\newcommand{\Ratehiding}[0]{Conceal and Boost Modulation\xspace}
+\newcommand{\pilotrandom}[0]{PiRa\xspace}
+\newcommand{\Pilotrandom}[0]{Pilot Randomization\xspace}

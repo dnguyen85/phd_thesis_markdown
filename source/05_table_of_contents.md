@@ -1,3 +1,5 @@
 \tableofcontents
+\newpage
+\pagenumbering{arabic}
 
 

@@ -151,8 +151,8 @@
 \setcounter{tocdepth}{3}
 
 % Headers and page numbering
-\usepackage{fancyhdr}
-\pagestyle{plain}
+% \usepackage{fancyhdr}
+% \pagestyle{plain}
 
 % Following package is used to add background image to front page
 \usepackage{wallpaper}
@@ -192,11 +192,11 @@
 % \newcommand{\amper}{{\fontspec[Scale=.95]{Adobe Caslon Pro}\selectfont\itshape\&}}
 
 % HEADINGS
-\usepackage{sectsty}
-\usepackage[normalem]{ulem}
-\sectionfont{\rmfamily\mdseries\Large}
-\subsectionfont{\rmfamily\mdseries\scshape\large}
-\subsubsectionfont{\rmfamily\bfseries\upshape\large}
+% \usepackage{sectsty}
+% \usepackage[normalem]{ulem}
+% \sectionfont{\rmfamily\mdseries\Large}
+% \subsectionfont{\rmfamily\mdseries\scshape\large}
+% \subsubsectionfont{\rmfamily\bfseries\upshape\large}
 % \sectionfont{\rmfamily\mdseries\Large}
 % \subsectionfont{\rmfamily\mdseries\scshape\normalsize}
 % \subsubsectionfont{\rmfamily\bfseries\upshape\normalsize}
@@ -207,15 +207,15 @@
 \usepackage{siunitx}
 
 % Adjust spacing between lines to 1.5
-\usepackage{setspace}
+% \usepackage{setspace}
 % \onehalfspacing
-\doublespacing
-\raggedbottom
+% \doublespacing
+% \raggedbottom
 
 % Set margins
 \usepackage[margin=1in]{geometry}
 % \setlength\parindent{0.4in} % indent at start of paragraphs (set to 0.3?)
-\setlength{\parskip}{9pt}
+% \setlength{\parskip}{9pt}
 
 % Add space between pararaphs
 % http://texblog.org/2012/11/07/correctly-typesetting-paragraphs-in-latex/
@@ -234,10 +234,20 @@
 >{\centering\arraybackslash}m{#1}}%
 
 % Allow for long captions and float captions on opposite page of figures
-% \usepackage[rightFloats, CaptionBefore]{fltpage}
+\usepackage[rightFloats, CaptionBefore]{packages/fltpage}
 
 % Don't let floats cross subsections
-% \usepackage[section,subsection]{extraplaceins}
+\usepackage[section,subsection]{packages/extraplaceins}
+
+\usepackage{xspace}
+
+%% MACROS -------------------------------------------------------%%
+\newcommand{\jamcancel}[0]{SAIM\xspace}
+\newcommand{\Jamcancel}[0]{Steerable-separable Antenna for Interference Mitigation\xspace}
+\newcommand{\ratehiding}[0]{CBM\xspace}
+\newcommand{\Ratehiding}[0]{Conceal and Boost Modulation\xspace}
+\newcommand{\pilotrandom}[0]{PiRa\xspace}
+\newcommand{\Pilotrandom}[0]{Pilot Randomization\xspace}
 
 %%%%%%%%%%%%%%% Document %%%%%%%%%%%%%%%
 \begin{document}
@@ -296,57 +306,66 @@
     \end{center}
 \end{titlepage}
 
-\vspace*{\fill}
+\pagenumbering{Roman} \thispagestyle{empty} \quad\vspace{1in}\quad 
+\abstract{
+\qquad
+\begin{center}
+\begin{minipage}{0.8\textwidth}
+\setlength{\parskip}{0.5em}% restore the value
 
-\noindent  \textit{
-I, AUTHORNAME confirm that the work presented in this thesis is my own. Where information has been derived from other sources, I confirm that this has been indicated in the thesis.
-} \vspace*{\fill}
+Today's trend of migrating radio devices from hardware to software provides 
+potential to create flexible applications for both commercial and military use. 
+However, this raises security concerns, as malicious attackers can also be 
+generated easily to break legitimate communications. In this research work, our goal is 
+to design a robust anti-jamming radio framework. We 
+particularly investigate three different aspects of jamming threats: high-power 
+jammers, link attacks on rate adaptation, and jamming in 
+multicarrier systems.
 
-\section*{Abstract}\label{abstract}
-\addcontentsline{toc}{section}{Abstract}
+The threats of high-power jamming to wireless communications today are 
+realistic due to the ease of access to powerful jamming sources such as the 
+availability of commercial GPS/WiFi/cellular devices on the market, or RF guns 
+built from microwave ovens' magnetron. To counter high-power jamming attacks, 
+we develop \jamcancel which is a hybrid system capable of resisting jammers of 
+up to 100,000 times higher power than legitimate communication nodes. The 
+system robustness relies on our own antenna structure specially designed for 
+anti-jamming purpose. We develop an efficient algorithm for auto-configuring 
+the antenna adaptively to dynamic environments. We also devise a software-based 
+jamming cancellation technique for appropriately extracting original signals, 
+which is more robust than traditional MIMO approaches, as pilot signals are not 
+required in \jamcancel.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et turpis
-gravida, lacinia ante sit amet, sollicitudin erat. Aliquam efficitur
-vehicula leo sed condimentum. Phasellus lobortis eros vitae rutrum
-egestas. Vestibulum ante ipsum primis in faucibus orci luctus et
-ultrices posuere cubilia Curae; Donec at urna imperdiet, vulputate orci
-eu, sollicitudin leo. Donec nec dui sagittis, malesuada erat eget,
-vulputate tellus. Nam ullamcorper efficitur iaculis. Mauris eu vehicula
-nibh. In lectus turpis, tempor at felis a, egestas fermentum massa.
+In spite of the robustness of \jamcancel, our design is more appropriate for malicious environments with powerful jammers, where mechanical steering is feasible, e.g., military applications. Residential and commercial wireless communication systems are still vulnerable to even limited-power jamming, as in today's standard wireless protocols, rate information is 
+exposed 
+to adversaries. Rate-based attacks have been demonstrated to severely degrade 
+the networks at very low cost. To mitigate rate-based attacks, we 
+develop \ratehiding, 
+a system capable of hiding rate and -- at the same time -- increasing 
+resiliency against jammers up to seven times higher than regular systems, where 
+rate is exposed. We achieve the resiliency boost by generalizing Trellis Coded Modulation to allow non-uniform codeword mapping. We develop an efficient 
+algorithm for finding good non-uniform codes for all modulations in \{BPSK, QPSK, 8-PSK, 16-QAM, 64-QAM\}. To conceal rate information, we devise an 
+efficient method for generating cryptographic interleaving functions.
 
-\section*{Acknowledgements}\label{acknowledgements}
-\addcontentsline{toc}{section}{Acknowledgements}
+In recently deployed communication networks such as WiFi and LTE systems, MIMO and OFDM are the two main techniques for increasing bandwidth 
+efficiency. While MIMO increases the channel capacity by spatial processing on multiple received signals, OFDM mitigates impacts of dynamic variations in wide-band channels and allows frequency reuse with overlapping carriers.
+Synchronization is a key for high-throughput performance in MIMO and OFDM systems. In this work, we study impacts of jamming attacks 
+specifically targeting to control channels in WiFi and LTE 
+networks. Our study focuses on efficient techniques for both jamming and 
+anti-jamming in multicarrier systems.
 
-Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-congue fermentum ante, semper porta nisl consectetur ut. Duis ornare sit
-amet dui ac faucibus. Phasellus ullamcorper leo vitae arcu ultricies
-cursus. Duis tristique lacus eget metus bibendum, at dapibus ante
-malesuada. In dictum nulla nec porta varius. Fusce et elit eget sapien
-fringilla maximus in sit amet dui.
-
-Mauris eget blandit nisi, faucibus imperdiet odio. Suspendisse blandit
-dolor sed tellus venenatis, venenatis fringilla turpis pretium. Donec
-pharetra arcu vitae euismod tincidunt. Morbi ut turpis volutpat,
-ultrices felis non, finibus justo. Proin convallis accumsan sem ac
-vulputate. Sed rhoncus ipsum eu urna placerat, sed rhoncus erat
-facilisis. Praesent vitae vestibulum dui. Proin interdum tellus ac velit
-varius, sed finibus turpis placerat.
+Research work in this proposal is developed based on our own radio system 
+which is a multicarrier framework with adaptive sensing and support of a 
+large set of modulation and coding schemes. Our base system achieved the 
+Winning award of Cooperative Tournament and Third prize of Competitive 
+Tournament in Preliminary Round of DARPA Spectrum Challenge 2013.
+\end{minipage}
+\end{center}}
 
 \newpage
 
 \tableofcontents
-
-\section*{List of figures}\label{list-of-figures}
-\addcontentsline{toc}{section}{List of figures}
-
-Figure 4.1 This is an example figure . . . \hfill{pp}\\
-Figure x.x Short title of the figure . . . \hfill{pp}
-
-\section*{List of tables}\label{list-of-tables}
-\addcontentsline{toc}{section}{List of tables}
-
-Table 5.1 This is an example table . . . \hfill{pp}\\
-Table x.x Short title of the figure . . . \hfill{pp}
+\newpage
+\pagenumbering{arabic}
 
 \section{Introduction, with a
 citation}\label{introduction-with-a-citation}
