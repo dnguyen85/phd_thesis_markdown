@@ -82,8 +82,5 @@ html:
 	--include-in-header="$(STYLEDIR)/style.css" \
 	--toc \
 	--number-sections
-	rm -rf "$(OUTPUTDIR)/source"
-	mkdir "$(OUTPUTDIR)/source"
-	cp -r "$(INPUTDIR)/figures" "$(OUTPUTDIR)/source/figures"
 
 .PHONY: help pdf docx html tex
